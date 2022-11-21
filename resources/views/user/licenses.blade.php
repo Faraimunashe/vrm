@@ -102,24 +102,28 @@
                 </div>
             </div>
             <div class="row mt-5 justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">License Details</h3>
-                        </div>
-                        <div class="card-body">
-                            <p><strong>License #:</strong> {{$license->number}}</p>
-                            <p><strong>National ID:</strong> {{$license->natid}}</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row">
-                                <div class="col-12">
-                                    <a href="" style="float: right;" class="btn btn-primary">Request collection</a>
+                @if (!is_null($licenses))
+                    @foreach ($licenses as $item)
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">License Details</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>License #:</strong> {{$item->number}}</p>
+                                    <p><strong>National ID:</strong> {{$item->natid}}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <a href="" style="float: right;" class="btn btn-primary">Request collection</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    @endforeach
+                @endif
             </div>
 
       </div>
