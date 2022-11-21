@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Http\Controllers\admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\Transaction;
+use Illuminate\Http\Request;
+
+class PaymentController extends Controller
+{
+    public function index()
+    {
+        return view('admin.payment', [
+            'payments' => Transaction::all()
+        ]);
+    }
+}
