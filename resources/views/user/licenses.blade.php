@@ -93,11 +93,32 @@
                 <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
                   <div class="col-lg-6">
                     <h4>Check Your Drivers License</h4>
-                    <p>May be it too a little longer to find it.</p>
+                    <p>May be it took a little longer to find it.</p>
                     <form action="{{route('user-licences')}}" method="GET">
-                      <input type="text" name="search"><button type="submit" class="btn btn-primary">Search</button>
+                      <input type="text" name="search" class=" ml-3">
+                      <button type="submit" class="btn btn-primary">Search</button>
                     </form>
                   </div>
+                </div>
+            </div>
+            <div class="row mt-5 justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">License Details</h3>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>License #:</strong> {{$license->number}}</p>
+                            <p><strong>National ID:</strong> {{$license->natid}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-12">
+                                    <a href="" style="float: right;" class="btn btn-primary">Request collection</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -107,45 +128,7 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer">
-
-    {{-- <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-6">
-            <h4>Join Our Newsletter</h4>
-            <p>To get updates, news and notices from us.</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div> --}}
-
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>VLCS<span>.</span></h3>
-            <p>
-                Central Vehicle Registry
-                <br>
-                29 Robson Manyika Avenue
-                <br>
-                P.O. Box CY760,
-                Causeway<br>
-                Harare, Zimbabwe<br><br>
-              <strong>Phone:</strong> +263 4771 577/ 263 4759 743-5<br>
-              <strong>Fax:</strong> 263 474 8010<br>
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
+  <footer id="footer" style="float: bottom;">
     <div class="container py-4">
       <div class="copyright">
         &copy; Copyright <strong><span>VLCS</span></strong>. All Rights Reserved

@@ -121,40 +121,9 @@
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12">
 
-          <div class="col-lg-12">
-            <form action="{{route('apply')}}" method="POST" role="form">
-                @csrf
-                <div class="row mt-4">
-                    <div class="col form-group">
-                        <input type="text" name="make" class="form-control" id="make" placeholder="Vehicle make" required>
-                    </div>
-                    <div class="col form-group">
-                        <input type="text" class="form-control" name="model" id="model" placeholder="Vehicle model" required>
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col form-group">
-                    <input type="date" name="manufactured_at" class="form-control" id="manufactured_at" placeholder="Manufacture date" required>
-                    </div>
-                    <div class="col form-group">
-                    <input type="text" class="form-control" name="color" id="color" placeholder="Vehicle color" required>
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col form-group">
-                    <input type="text" name="engine_num" class="form-control" id="engine_no" placeholder="Engine number" required>
-                    </div>
-                    <div class="col form-group">
-                    <input type="text" class="form-control" name="chasis_num" id="chasis_no" placeholder="Chasis number" required>
-                    </div>
-                </div>
-                <div class="text-center mt-5">
-                    <button type="submit" class="btn btn-primary">Send Application</button>
-                </div>
-            </form>
-          </div>
-
+            </div>
         </div>
 
       </div>
