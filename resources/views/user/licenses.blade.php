@@ -40,7 +40,7 @@
         <ul>
           @if (Auth::check())
             <li><a class="nav-link" href="{{route('home')}}">Home</a></li>
-            <li><a class="nav-link" href="{{route('user-licences')}}">Driver's License</a></li>
+            <li><a class="nav-link scrollto" href="{{route('user-licences')}}">Driver's License</a></li>
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
             </form>
@@ -70,10 +70,6 @@
     <section id="contact" class="contact">
       <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
-          <h3><span>Welcome, {{Auth::user()->name}}</span></h3>
-        </div>
-
         @if (Session::has('error'))
             <div class="alert alert-danger" role="alert">
                 {{Session::get('error')}}
@@ -93,69 +89,17 @@
                 </ul>
             </div>
         @endif
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-6">
-            <div class="info-box mb-4">
-              <i class="bx bx-car"></i>
-              <h3>{{\App\Models\Vehicle::where('user_id', Auth::id())->count()}}</h3>
-              <p>Total number of vehicles registered in your name.</p>
+            <div class="container">
+                <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                  <div class="col-lg-6">
+                    <h4>Check Your Drivers License</h4>
+                    <p>May be it too a little longer to find it.</p>
+                    <form action="{{route('user-licences')}}" method="GET">
+                      <input type="text" name="search"><button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                  </div>
+                </div>
             </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6">
-            <div class="info-box  mb-4">
-              <i class="bx bx-envelope"></i>
-              <h3>{{\App\Models\Vehicle::where('user_id', Auth::id())->where('status', 2)->count()}}</h3>
-              <p>pending application</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6">
-            <div class="info-box  mb-4">
-              <i class="bx bx-card"></i>
-              <h3>{{\App\Models\License::count()}}</h3>
-              <p>ready drivers licenses</p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-
-          <div class="col-lg-12">
-            <form action="{{route('apply')}}" method="POST" role="form">
-                @csrf
-                <div class="row mt-4">
-                    <div class="col form-group">
-                        <input type="text" name="make" class="form-control" id="make" placeholder="Vehicle make" required>
-                    </div>
-                    <div class="col form-group">
-                        <input type="text" class="form-control" name="model" id="model" placeholder="Vehicle model" required>
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col form-group">
-                    <input type="date" name="manufactured_at" class="form-control" id="manufactured_at" placeholder="Manufacture date" required>
-                    </div>
-                    <div class="col form-group">
-                    <input type="text" class="form-control" name="color" id="color" placeholder="Vehicle color" required>
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col form-group">
-                    <input type="text" name="engine_no" class="form-control" id="engine_no" placeholder="Engine number" required>
-                    </div>
-                    <div class="col form-group">
-                    <input type="text" class="form-control" name="chasis_no" id="chasis_no" placeholder="Chasis number" required>
-                    </div>
-                </div>
-                <div class="text-center mt-5">
-                    <button type="submit" class="btn btn-primary">Send Application</button>
-                </div>
-            </form>
-          </div>
-
-        </div>
 
       </div>
     </section><!-- End Contact Section -->
@@ -164,8 +108,8 @@
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
-{{--
-    <div class="footer-newsletter">
+
+    {{-- <div class="footer-newsletter">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6">

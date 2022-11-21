@@ -36,6 +36,8 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 Route::group(['middleware' => ['auth', 'role:user']], function () {
     Route::get('/home', 'App\Http\Controllers\user\HomeController@index')->name('home');
     Route::post('/apply', 'App\Http\Controllers\user\HomeController@apply')->name('apply');
+
+    Route::get('/user/licenses', 'App\Http\Controllers\user\LicenseController@index')->name('user-licences');
 });
 
 require __DIR__.'/auth.php';
