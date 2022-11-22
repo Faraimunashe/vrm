@@ -65,7 +65,7 @@
                                                 <th scope="row">
                                                     <a href="#">
                                                         @php
-                                                            $status = get_veh_status($num);
+                                                            $status = get_veh_status($item->id);
                                                             $count++;
                                                             echo $count;
                                                         @endphp
