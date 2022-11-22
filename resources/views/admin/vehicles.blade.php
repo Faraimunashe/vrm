@@ -65,16 +65,19 @@
                                                 <th scope="row">
                                                     <a href="#">
                                                         @php
+                                                            $status = get_veh_status($num);
                                                             $count++;
                                                             echo $count;
                                                         @endphp
                                                     </a>
                                                 </th>
                                                 <td>{{ $item->model }} {{ $item->model }}</td>
-                                                <td>{{ $item->engine_num }}</td>
-                                                <td>{{ $item->chasis_num }}</td>
+                                                <td>{{ $item->engine_number }}</td>
+                                                <td>{{ $item->chasis_number }}</td>
                                                 <td>{{ $item->color }}</td>
-                                                <td>{{ $item->status}}</td>
+                                                <td>
+                                                    <div class="badge badge-{{$status->badge}}">{{$status->label}}</div>
+                                                </td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $item->id }}">
                                                         reply
