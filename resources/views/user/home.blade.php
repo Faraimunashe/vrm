@@ -41,6 +41,7 @@
           @if (Auth::check())
             <li><a class="nav-link" href="{{route('home')}}">Home</a></li>
             <li><a class="nav-link" href="{{route('user-licences')}}">Driver's License</a></li>
+            <li><a class="nav-link" href="{{route('user-vehicles')}}">Vehicles</a></li>
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
             </form>

@@ -39,6 +39,10 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 
     Route::get('/user/licenses', 'App\Http\Controllers\user\LicenseController@index')->name('user-licences');
     Route::get('/user/request/{license_id}', 'App\Http\Controllers\user\LicenseController@request')->name('user-licence-request');
+    Route::get('/user/collections', 'App\Http\Controllers\user\LicenseController@collection')->name('user-collections');
+
+    Route::get('/user/vehicles', 'App\Http\Controllers\user\VehicleController@index')->name('user-vehicles');
+    Route::get('/download/plate/{vehicle_id}', 'App\Http\Controllers\user\VehicleController@download')->name('user-download-plate');
 });
 
 require __DIR__.'/auth.php';

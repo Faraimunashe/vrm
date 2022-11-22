@@ -41,7 +41,7 @@
           @if (Auth::check())
             <li><a class="nav-link" href="{{route('home')}}">Home</a></li>
             <li><a class="nav-link" href="{{route('user-licences')}}">Driver's License</a></li>
-            <li><a class="nav-link" href="{{route('')}}">Collections</a></li>
+            <li><a class="nav-link" href="{{route('user-vehicles')}}">Vehicles</a></li>
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
             </form>
@@ -113,14 +113,15 @@
                                 <div class="card-body">
                                     <p><strong>License #:</strong> {{$item->number}}</p>
                                     <p><strong>National ID:</strong> {{$item->natid}}</p>
+                                    <p><span class="badge bg-success">Ready For Collection</span></p>
                                 </div>
-                                <div class="card-footer">
+                                {{-- <div class="card-footer">
                                     <div class="row">
                                         <div class="col-12">
-                                            <a href="" style="float: right;" class="btn btn-primary">Request collection</a>
+                                            <a href="{{route('user-licence-request',$item->id)}}" style="float: right;" class="btn btn-primary">Request collection</a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     @endforeach

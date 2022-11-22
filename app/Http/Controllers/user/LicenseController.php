@@ -22,4 +22,12 @@ class LicenseController extends Controller
             'licenses' => $licenses
         ]);
     }
+
+    public function collection()
+    {
+        $collections = [];
+        return view('user.collections', [
+            'collections' => $collections
+        ]);
+    }
 }

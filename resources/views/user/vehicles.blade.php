@@ -39,8 +39,9 @@
       <nav id="navbar" class="navbar">
         <ul>
           @if (Auth::check())
-            <li><a class="nav-link" href="{{route('home')}}">Home</a></li>
-            <li><a class="nav-link" href="{{route('user-licences')}}">Driver's License</a></li>
+          <li><a class="nav-link" href="{{route('home')}}">Home</a></li>
+          <li><a class="nav-link" href="{{route('user-licences')}}">Driver's License</a></li>
+          <li><a class="nav-link" href="{{route('user-vehicles')}}">Vehicles</a></li>
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
             </form>
@@ -94,38 +95,64 @@
             </div>
         @endif
         <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-6">
-            <div class="info-box mb-4">
-              <i class="bx bx-car"></i>
-              <h3>{{\App\Models\Vehicle::where('user_id', Auth::id())->count()}}</h3>
-              <p>Total number of vehicles registered in your name.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6">
-            <div class="info-box  mb-4">
-              <i class="bx bx-envelope"></i>
-              <h3>{{\App\Models\Vehicle::where('user_id', Auth::id())->where('status', 2)->count()}}</h3>
-              <p>pending application</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6">
-            <div class="info-box  mb-4">
-              <i class="bx bx-card"></i>
-              <h3>{{\App\Models\License::count()}}</h3>
-              <p>ready drivers licenses</p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
             <div class="col-lg-12">
-
+                <div class="card recent-sales overflow-auto">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h5 class="card-title">My Vehicles</h5>
+                            </div>
+                        </div>
+                        <table class="table table-borderless datatable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Engine#</th>
+                                    <th scope="col">Chasis#</th>
+                                    <th scope="col">Color</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Plate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $count = 0;
+                                @endphp
+                                @foreach ($vehicles as $item)
+                                    <tr>
+                                        <th scope="row">
+                                            <a href="#">
+                                                @php
+                                                    $status = get_veh_status($item->status);
+                                                    $plate = \App\Models\Plate::where('vehicle_id', $item->id)->first();
+                                                    $count++;
+                                                    echo $count;
+                                                @endphp
+                                            </a>
+                                        </th>
+                                        <td>{{ $item->model }} {{ $item->model }}</td>
+                                        <td>{{ $item->engine_number }}</td>
+                                        <td>{{ $item->chasis_number }}</td>
+                                        <td>{{ $item->color }}</td>
+                                        <td>
+                                            <span class="badge bg-{{$status->badge}}">{{$status->label}}</span>
+                                        </td>
+                                        <td>
+                                            @if ($item->status === 1)
+                                                <a class="btn btn-primary" href="{{route('user-download-plate', $item->id)}}">
+                                                    {{$plate->number}}
+                                                </a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-
       </div>
     </section><!-- End Contact Section -->
 

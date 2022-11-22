@@ -17,7 +17,17 @@ class VehicleController extends Controller
         ]);
     }
 
-    public function respond(Request $request)
+    public function generateRandomString($length = 1) {
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
+    public function reply(Request $request)
     {
         $request->validate([
             'vehicle_id' => ['required', 'numeric'],
@@ -35,7 +45,7 @@ class VehicleController extends Controller
             }else{
                 $plate = new Plate();
                 $plate->vehicle_id =$vehicle->id;
-                $plate->number;
+                $plate->number = 'AG'.$this->generateRandomString().'-'. rand(1000,9999);
                 $plate->save();
 
                 $vehicle->status = $request->status;
